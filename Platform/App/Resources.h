@@ -1,7 +1,7 @@
 #pragma once
 
-char* FullPath(char* file);
-char* FullWritablePath(char* file);
+const char* FullPath(const char* file);
+const char* FullWritablePath(const char* file);
 
 void LoadProgress();
 void SaveProgress();

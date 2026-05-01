@@ -94,7 +94,7 @@ Cspr_frame *anim_setsequence(ANIM *anim, int seq, int force)
 }
 
 
-ANIM *anim_retrieveanim(char *animname)
+ANIM *anim_retrieveanim(const char *animname)
 {
   ANIM *myanim;
   vg_dll_first(allanims);

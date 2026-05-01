@@ -122,7 +122,7 @@ int stricmp( char* s1, char* s2 )
  * Initialize for fast file access. The master file and maximum number
  * of open "files" are specified.
  */
-int FastFileInit( char *fname, int max_handles )
+int FastFileInit( const char *fname, int max_handles )
 {
 //    HRSRC  h;
 
@@ -225,13 +225,13 @@ void FastFileFini( void )
  *
  * Search the directory for the file, and return a file handle if found.
  */
-HFASTFILE FastFileOpen( char * name )
+HFASTFILE FastFileOpen( const char * name )
 {
 
     FILEENTRY   fe;
     LPFILEENTRY pfe;
 #if USEBASENAME
-    char *baseptr;
+    const char *baseptr;
 #endif // USEBASENAME
 
     

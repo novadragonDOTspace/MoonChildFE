@@ -10,13 +10,13 @@
 #include "frm_int.hpp"
 
 
-VG_BOOLEAN PCX_ff_save(char *fname, BYTE *buffer, UINT16 width, UINT16 height, BYTE *palette)
+VG_BOOLEAN PCX_ff_save(const char *fname, BYTE *buffer, UINT16 width, UINT16 height, BYTE *palette)
 {
 	return VG_TRUE;
 }
 
 
-VG_BOOLEAN PCX_ff_stat(char *fname, UINT16 *width, UINT16 *height)
+VG_BOOLEAN PCX_ff_stat(const char *fname, UINT16 *width, UINT16 *height)
 {
   HFASTFILE fp;
   bool rc;
@@ -52,7 +52,7 @@ VG_BOOLEAN PCX_ff_stat(char *fname, UINT16 *width, UINT16 *height)
 // gebuffered load versie!
 #define BUFFERSIZE (128)
 
-VG_BOOLEAN PCX_ff_load(char *fname, BYTE *buffer, BYTE *palette)
+VG_BOOLEAN PCX_ff_load(const char *fname, BYTE *buffer, BYTE *palette)
 {
 	unsigned char TempBuffer[BUFFERSIZE];
 	HFASTFILE  fp;
@@ -164,7 +164,7 @@ VG_BOOLEAN PCX_ff_load(char *fname, BYTE *buffer, BYTE *palette)
 }
 
 
-void PCX_ff_dump(char *filename, FILE *out)
+void PCX_ff_dump(const char *filename, FILE *out)
 {
   UINT16 width, height;
   BYTE pal[256*3];

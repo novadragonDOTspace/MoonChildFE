@@ -81,10 +81,10 @@ void bullet_add(OBJECT *bullet);
 void bullet_init(void);
 
 
-VG_BOOLEAN loadfile(char * fname, char *buffer, UINT32 length);
-VG_BOOLEAN savefile(char * fname, char *buffer, UINT32 length);
-VG_BOOLEAN loaddocfile(char * fname, char *buffer, UINT32 length);
-VG_BOOLEAN savedocfile(char * fname, char *buffer, UINT32 length);
+VG_BOOLEAN loadfile(const char * fname, char *buffer, UINT32 length);
+VG_BOOLEAN savefile(const char * fname, char *buffer, UINT32 length);
+VG_BOOLEAN loaddocfile(const char * fname, char *buffer, UINT32 length);
+VG_BOOLEAN savedocfile(const char * fname, char *buffer, UINT32 length);
 
 #endif
 

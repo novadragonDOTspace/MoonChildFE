@@ -27,7 +27,7 @@ public:
   Cmovie    (Caudio *audio);
   ~Cmovie   (void);
 
-  Smack    *open(char *filename);
+  Smack    *open(const char *filename);
   void      close(Smack *smk);
 
   void      playtovideo(Smack *smk, Cvideo *video, Cblitbuf *hulpbuf, UINT16 zoomfactor);

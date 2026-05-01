@@ -75,7 +75,7 @@ Cblitbuf::Cblitbuf(Cvideo *video)
 //  log_out("Construction succesful!");
 }
 
-Cblitbuf::Cblitbuf(char *pcx_filename, UINT16 top_margin, UINT16 bottom_margin, UINT16 forcesystemmem)
+Cblitbuf::Cblitbuf(const char *pcx_filename, UINT16 top_margin, UINT16 bottom_margin, UINT16 forcesystemmem)
 {
   VG_BOOLEAN rc;
   UINT16 w;
@@ -217,7 +217,7 @@ void Cblitbuf::load_mem(UINT16 x, UINT16 y, UINT16 w, UINT16 h, BYTE *buf)
 {
 }
 
-VG_BOOLEAN Cblitbuf::save_pcx(char *filename, BYTE *palette)
+VG_BOOLEAN Cblitbuf::save_pcx(const char *filename, BYTE *palette)
 {
   BYTE vga_pal[256*3];
   VG_BOOLEAN rc;

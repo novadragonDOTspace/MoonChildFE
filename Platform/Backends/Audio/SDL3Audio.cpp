@@ -14,7 +14,7 @@
 #include <memory>
 #include <vector>
 
-extern char* FullPath(char* file);
+extern const char* FullPath(const char* file);
 
 static constexpr int MIX_FREQUENCY = 48000;
 static constexpr int MIX_CHANNELS  = 2;

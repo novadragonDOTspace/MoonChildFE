@@ -7,10 +7,10 @@
 
 
 static char *asset_nextstring(void);
-static char *asset_zoek(char *string);
+static char *asset_zoek(const char *string);
 static void  asset_rewind();
 static void  asset_close(void);
-static int   asset_open(char * name);
+static int   asset_open(const char * name);
 
 static int seqcontext_add(char *string);
 static int anmcontext_add(char *string);
@@ -35,7 +35,7 @@ Cspr_frame *seqframes[100];
 int seqframescnt;
 
 
-static int asset_open(char * name)
+static int asset_open(const char * name)
 {
   assetfp = fopen(name, "rb");
   if (!assetfp)
@@ -61,7 +61,7 @@ static void asset_rewind(void)
 }
 
 
-static char *asset_zoek(char *string)
+static char *asset_zoek(const char *string)
 {
   char *dumstring = NULL;
   short int cmpcnt;
@@ -99,7 +99,7 @@ static char *asset_nextstring(void)
 
 /*****************************************************************************/
 
-int asset_parse(char * assetname)
+int asset_parse(const char * assetname)
 {
   char *passstring;
   int inseq = 0;

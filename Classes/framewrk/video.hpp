@@ -101,11 +101,11 @@ public:
   Cblitbuf(Cvideo *video);      // give a blitbuffer description of the videobackbuffer
   Cblitbuf(UINT16 width, UINT16 height, UINT16 top_margin, UINT16 bottom_margin);
   Cblitbuf(UINT16 width, UINT16 height, UINT16 top_margin, UINT16 bottom_margin, UINT16 forcesystemmem);
-  Cblitbuf(char *pcx_filename, UINT16 top_margin, UINT16 bottom_margin, UINT16 forcesystemmem = 0); // create with dimensions of PCX file
+  Cblitbuf(const char *pcx_filename, UINT16 top_margin, UINT16 bottom_margin, UINT16 forcesystemmem = 0); // create with dimensions of PCX file
   ~Cblitbuf(void);
   void save_mem(UINT16 x, UINT16 y, UINT16 w, UINT16 h, BYTE *buf);
   void load_mem(UINT16 x, UINT16 y, UINT16 w, UINT16 h, BYTE *buf);
-  VG_BOOLEAN save_pcx(char *filename, BYTE *palette);
+  VG_BOOLEAN save_pcx(const char *filename, BYTE *palette);
   void compiled_sprite(UINT16 x, UINT16 y, COMP_SPRITE compspr);
 
   void dump(FILE *fd);

@@ -114,14 +114,14 @@ static void EnsureBasePath()
 static char FullPathBuf[2048];
 static char WritablePathBuf[2048];
 
-char* FullPath(char* file)
+const char* FullPath(const char* file)
 {
     EnsureBasePath();
     std::snprintf(FullPathBuf, sizeof(FullPathBuf), "%s%s", DataPath, file);
     return FullPathBuf;
 }
 
-char* FullWritablePath(char* file)
+const char* FullWritablePath(const char* file)
 {
     EnsureBasePath();
     std::snprintf(WritablePathBuf, sizeof(WritablePathBuf), "%s%s", WritablePath, file);

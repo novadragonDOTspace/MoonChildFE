@@ -21,9 +21,9 @@ typedef struct {
     LPFILEENTRY pfe;
 } FILEHANDLE, *LPFILEHANDLE;
 
-extern int FastFileInit( char *fname, int max_handles );
+extern int FastFileInit( const char *fname, int max_handles );
 extern void FastFileFini( void );
-extern HFASTFILE FastFileOpen( char *name );
+extern HFASTFILE FastFileOpen( const char *name );
 extern bool FastFileClose( HFASTFILE pfe );
 extern bool FastFileRead( HFASTFILE pfh, void *ptr, int size );
 extern bool FastFileSeek( HFASTFILE pfe, int off, int how );

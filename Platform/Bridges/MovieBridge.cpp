@@ -29,7 +29,7 @@ static const char* ResolveMoviePath(const char* mpgFileName)
     static char path[2048];
     char          rel[512];
     std::snprintf(rel, sizeof(rel), "movies/%s", mpgFileName);
-    char* resolved = FullPath(rel);
+    const char* resolved = FullPath(rel);
     std::snprintf(path, sizeof(path), "%s", resolved);
     return path;
 }
@@ -162,7 +162,7 @@ Cmovie::~Cmovie(void)
     TeardownStream();
 }
 
-Smack* Cmovie::open(char* filename)
+Smack* Cmovie::open(const char* filename)
 {
     TeardownStream();
 

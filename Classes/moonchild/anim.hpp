@@ -4,7 +4,7 @@
 #include <frm_wrk.hpp>
 #include <mc.hpp>
 
-ANIM *anim_retrieveanim(char *animname);
+ANIM *anim_retrieveanim(const char *animname);
 ANIM *copy_anim(ANIM *oldanim);
 Cspr_frame *anim_forceframe(ANIM *anim, INT16 framenr);
 Cspr_frame *anim_nextframe(ANIM *anim);

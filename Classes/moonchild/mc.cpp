@@ -262,7 +262,7 @@ HEARTBEAT_FN MC_alldiams(void);
 
 void killpuzzle(void);
 UINT16 compscore(char *score1, char *score2);
-int  startmovie( char *movname, char *movkadername);
+int  startmovie( const char *movname, const char *movkadername);
 void handleinput1shot(void);
 void handleinputloop(void);
 UINT16 convscore(void);
@@ -785,8 +785,8 @@ UINT16 swirltab[64*4];  //upto 64 swirling letters simultaneously  (x,y,amp,char
 /*!	Converts the given filename to its fullpath using unicode
 *///-----------------------------------------------------------------------
 
-extern char *FullPath( char *a_File );
-extern char *FullWritablePath( char *a_File );
+extern const char *FullPath( const char *a_File );
+extern const char *FullWritablePath( const char *a_File );
 #ifdef __EMSCRIPTEN__
 extern void SyncPersistentStorage();
 #endif
@@ -1285,7 +1285,7 @@ void disablefastfile(void)
 }
 
 
-int startmovie( char *movname, char *movkadername)
+int startmovie( const char *movname, const char *movkadername)
 {
 
 // are the movies turned on???
@@ -6385,7 +6385,7 @@ int collision(UINT16 x, UINT16 y)
 
 // LOAD/SAVE ROUTINES
 
-VG_BOOLEAN loadfile(char * fname, char *buffer, UINT32 length)
+VG_BOOLEAN loadfile(const char * fname, char *buffer, UINT32 length)
 {
     FILE *fp;
     
@@ -6404,7 +6404,7 @@ VG_BOOLEAN loadfile(char * fname, char *buffer, UINT32 length)
 }
 
 
-VG_BOOLEAN savefile(char * fname, char *buffer, UINT32 length)
+VG_BOOLEAN savefile(const char * fname, char *buffer, UINT32 length)
 {
     FILE *fp;
     
@@ -6421,7 +6421,7 @@ VG_BOOLEAN savefile(char * fname, char *buffer, UINT32 length)
     return VG_TRUE;
 }
 
-VG_BOOLEAN loaddocfile(char * fname, char *buffer, UINT32 length)
+VG_BOOLEAN loaddocfile(const char * fname, char *buffer, UINT32 length)
 {
     FILE *fp;
     
@@ -6440,7 +6440,7 @@ VG_BOOLEAN loaddocfile(char * fname, char *buffer, UINT32 length)
 }
 
 
-VG_BOOLEAN savedocfile(char * fname, char *buffer, UINT32 length)
+VG_BOOLEAN savedocfile(const char * fname, char *buffer, UINT32 length)
 {
     FILE *fp;
     

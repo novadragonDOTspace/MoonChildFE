@@ -1,6 +1,7 @@
 #include "Resources.h"
 
 #include "globals.hpp"
+#include "SDL3/SDL_filesystem.h"
 
 #include <cstdio>
 #include <cstring>
@@ -41,18 +42,14 @@ static void TrimToParentDirectory(char* path)
     }
 }
 
-static void EnsureBasePath()
+static void FailedToGetPathsViaSDL()
 {
-    if (BasePath[0] != '\0')
-    {
-        return;
-    }
-
     char exeDir[4096];
+
     exeDir[0] = '\0';
 
 #ifdef _WIN32
-    char  buffer[MAX_PATH];
+    char buffer[MAX_PATH];
     DWORD len = GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     if (len > 0 && len < MAX_PATH)
     {
@@ -61,7 +58,7 @@ static void EnsureBasePath()
     }
 #else
 #ifdef __linux__
-    char    buffer[4096];
+    char buffer[4096];
     ssize_t len = readlink("/proc/self/exe", buffer, sizeof(buffer) - 1);
     if (len > 0)
     {
@@ -100,14 +97,41 @@ static void EnsureBasePath()
             }
         }
     }
+
+    std::snprintf(BasePath, sizeof(BasePath), "%s", exeDir);
+    std::snprintf(DataPath, sizeof(DataPath), "%s%s", BasePath, "data/");
+    std::snprintf(WritablePath, sizeof(WritablePath), "%s", BasePath);
+}
+
+static void EnsureBasePath()
+{
+    if (BasePath[0] != '\0')
+    {
+        return;
+    }
+
 #ifdef __EMSCRIPTEN__
     std::snprintf(BasePath, sizeof(BasePath), "/");
     std::snprintf(DataPath, sizeof(DataPath), "/data/");
     std::snprintf(WritablePath, sizeof(WritablePath), "/persistent/");
 #else
-    std::snprintf(BasePath, sizeof(BasePath), "%s", exeDir);
-    std::snprintf(DataPath, sizeof(DataPath), "%s%s", BasePath, "data/");
-    std::snprintf(WritablePath, sizeof(WritablePath), "%s", BasePath);
+    char exeDir[4096];
+    char writeablePath[4096];
+    std::snprintf(exeDir, sizeof(exeDir), "%s", SDL_GetBasePath());
+    std::snprintf(writeablePath, sizeof(exeDir), "%s", SDL_GetPrefPath("moonchild", "moonchild"));
+
+    if (exeDir[0] == '\0' || writeablePath[0] == '\0')
+    {
+        FailedToGetPathsViaSDL();
+    }
+    else
+    {
+
+        std::snprintf(BasePath, sizeof(BasePath), "%s", exeDir);
+        std::snprintf(DataPath, sizeof(DataPath), "%s%s", BasePath, "data/");
+        std::snprintf(WritablePath, sizeof(WritablePath), "%s", writeablePath);
+    }
+
 #endif
 }
 

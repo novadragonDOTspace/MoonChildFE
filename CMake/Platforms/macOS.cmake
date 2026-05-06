@@ -1,0 +1,24 @@
+set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
+
+target_compile_options(${EXECUTABLE_NAME} PRIVATE
+    $<$<CONFIG:Debug>:-O0>
+    $<$<CONFIG:Release>:-O3>
+)
+
+target_link_libraries(${EXECUTABLE_NAME} PRIVATE dl)
+
+
+# Bundling macOS application
+set_target_properties(${EXECUTABLE_NAME} PROPERTIES
+    MACOSX_BUNDLE_BUNDLE_NAME ${EXECUTABLE_NAME}
+    MACOSX_BUNDLE_BUNDLE_VERSION ${CMAKE_PROJECT_VERSION}
+    MACOSX_BUNDLE_GUI_IDENTIFIER com.teamhoi.${EXECUTABLE_NAME}
+    MACOSX_BUNDLE_ICON_FILE AppIcon.icns
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${CMAKE_PROJECT_VERSION}
+)
+
+add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/AppIcon.icns"
+        $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/../Resources/AppIcon.icns
+)

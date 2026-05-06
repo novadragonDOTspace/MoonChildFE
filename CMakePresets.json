@@ -45,6 +45,15 @@
       "cacheVariables": {
         "MOONCHILD_TARGET_ARCH": "Web"
       }
+    },
+    {
+      "name": "macosuniversal",
+      "generator": "Ninja Multi-Config",
+      "toolchainFile": "${sourceDir}/CMake/Toolchains/MacOS.cmake",
+      "binaryDir": "${sourceDir}/CMakeOut/macOSUniversal",
+      "cacheVariables": {
+        "MOONCHILD_TARGET_ARCH": "macOSUniversal"
+      }
     }
   ],
   "buildPresets": [
@@ -96,6 +105,16 @@
     {
       "name": "build-web-release",
       "configurePreset": "web",
+      "configuration": "Release"
+    },
+    {
+      "name": "build-macosuniversal-debug",
+      "configurePreset": "macosuniversal",
+      "configuration": "Debug"
+    },
+    {
+      "name": "build-macosuniversal-release",
+      "configurePreset": "macosuniversal",
       "configuration": "Release"
     }
   ]

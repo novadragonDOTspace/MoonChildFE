@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: BuildGameLinux.sh [Debug|Release] [LinuxX64|LinuxArm64]
+# Usage: BuildGameUnix.sh [Debug|Release] [LinuxX64|LinuxArm64]
 set -euo pipefail
 
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
@@ -16,12 +16,16 @@ fi
 
 CONFIG=Debug
 ARCH_EXPORT=LinuxX64
+PROC_COMMAND="nproc"
+
+[[ $OSTYPE == 'darwin'* ]] && ARCH_EXPORT=macOSUniversal
+[[ $OSTYPE == 'darwin'* ]] && PROC_COMMAND="sysctl -n hw.logicalcpu"
 
 for arg in "$@"; do
     case "$arg" in
         Release) CONFIG=Release ;;
         Debug)   CONFIG=Debug ;;
-        LinuxX64|LinuxArm64) ARCH_EXPORT="$arg" ;;
+        LinuxX64|LinuxArm64|macOSUniversal) ARCH_EXPORT="$arg" ;;
     esac
 done
 
@@ -38,6 +42,6 @@ echo "${R_LOG}Configuring the game... ($ARCH_EXPORT / $CONFIG)${R_0}"
 cmake --preset "$PRESET"
 
 echo "${R_LOG}Building the game...${R_0}"
-cmake --build --preset "$BUILD_PRESET" --target "MoonChildFE" --parallel "$(nproc)"
+cmake --build --preset "$BUILD_PRESET" --target "MoonChildFE" --parallel "$(eval $PROC_COMMAND)"
 
 echo "${R_OK}Build complete! ($ARCH_EXPORT / $CONFIG).${R_0}"

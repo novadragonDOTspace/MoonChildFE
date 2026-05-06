@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25.1)
 
-project(MoonChildFE LANGUAGES C CXX)
+project(MoonChildFE LANGUAGES C CXX VERSION 1.5.0)
 set(EXECUTABLE_NAME MoonChildFE)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -325,7 +325,7 @@ set(MOONCHILD_SOURCES
 )
 
 # Target
-add_executable(${EXECUTABLE_NAME} ${MOONCHILD_SOURCES})
+add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${MOONCHILD_SOURCES})
 
 if(MOONCHILD_ENABLE_EDITOR)
     target_compile_definitions(${EXECUTABLE_NAME} PRIVATE EDITOR=1)
@@ -413,6 +413,9 @@ elseif(WIN32 AND MOONCHILD_ARCH_32)
 elseif(UNIX AND NOT APPLE)
     target_compile_definitions(${EXECUTABLE_NAME} PRIVATE MOONCHILD_LINUX)
     include(${CMAKE_CURRENT_LIST_DIR}/CMake/Platforms/Linux.cmake)
+elseif(APPLE)
+    target_compile_definitions(${EXECUTABLE_NAME} PRIVATE MOONCHILD_MACOS)
+    include(${CMAKE_CURRENT_LIST_DIR}/CMake/Platforms/macOS.cmake)
 endif()
 
 # Output directories
@@ -422,7 +425,13 @@ set_target_properties(${EXECUTABLE_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE        ${MOONCHILD_BIN_DIR}/Release
 )
 
-if(MOONCHILD_INPUT_SDL3 AND NOT EMSCRIPTEN AND MOONCHILD_VENDORED_GAMECONTROLLERDB)
+if(MOONCHILD_INPUT_SDL3 AND NOT EMSCRIPTEN AND MOONCHILD_VENDORED_GAMECONTROLLERDB AND APPLE)
+    add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${MOONCHILD_LIBRARY_DIR}/SDL_GameControllerDB/gamecontrollerdb.txt"
+            $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/../Resources/gamecontrollerdb.txt
+    )
+elseif(MOONCHILD_INPUT_SDL3 AND NOT EMSCRIPTEN AND MOONCHILD_VENDORED_GAMECONTROLLERDB AND NOT APPLE)
     add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${MOONCHILD_LIBRARY_DIR}/SDL_GameControllerDB/gamecontrollerdb.txt"
@@ -431,11 +440,19 @@ if(MOONCHILD_INPUT_SDL3 AND NOT EMSCRIPTEN AND MOONCHILD_VENDORED_GAMECONTROLLER
 endif()
 
 set(MOONCHILD_RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Data)
-add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-        "${MOONCHILD_RESOURCES_DIR}"
-        $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/data
-)
+if (APPLE)
+    add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${MOONCHILD_RESOURCES_DIR}"
+            $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/../Resources/data
+    )
+else()
+    add_custom_command(TARGET ${EXECUTABLE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${MOONCHILD_RESOURCES_DIR}"
+            $<TARGET_FILE_DIR:${EXECUTABLE_NAME}>/data
+    )
+endif()
 
 # MSVC shut up
 if(MSVC)

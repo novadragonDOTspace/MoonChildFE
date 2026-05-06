@@ -78,8 +78,34 @@ cd MoonChildFE
 
 4. You have two options here:
     1. Run a build script manually:
-        - For a 64-bit build, run `bash ./Scripts/BuildGameLinux.sh LinuxX64`
-        - For an ARM64 build, run `bash ./Scripts/BuildGameLinux.sh LinuxArm64` (UNTESTED)
+        - For a 64-bit build, run `bash ./Scripts/BuildGameUnix.sh LinuxX64`
+        - For an ARM64 build, run `bash ./Scripts/BuildGameUnix.sh LinuxArm64` (UNTESTED)
+        - You can also add `Release` to the end of the command to build the game in release mode.
+    2. Use the CMake commands directly. If you're taking this route, you probably don't need a guide in the first place.
+
+The executable will be end up in the `Bin` folder.
+
+### macOS
+
+1. Install the [Xcode Command Line Tools](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/) and [Homebrew](https://brew.sh/).
+
+2. Install CMake from Homebrew.
+
+```bash
+brew install cmake
+```
+
+3. Run the `cd` command, followed by the path of the folder where you want to keep the source code. For example: `cd ~/GitHub`.
+4. Clone the repository with submodules and enter it:
+
+```bash
+git clone --recursive https://github.com/MorsGames/MoonChildFE.git
+cd MoonChildFE
+```
+
+4. You have two options here:
+    1. Run a build script manually:
+        - For a Universal Binary (x64 + arm64) build, run `bash ./Scripts/BuildGameUnix.sh macOSUniversal`
         - You can also add `Release` to the end of the command to build the game in release mode.
     2. Use the CMake commands directly. If you're taking this route, you probably don't need a guide in the first place.
 

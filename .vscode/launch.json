@@ -33,6 +33,13 @@
             "command": "python -m http.server 8008 --bind 127.0.0.1",
         },
         {
+            "name": "Debug Game (macOSUniversal)",
+            "type": "node-terminal",
+            "request": "launch",
+            "preLaunchTask": "Build Game (macOSUniversal, Debug)",
+            "command": "open \"${workspaceFolder}/Bin/macOSUniversal/Debug/MoonChildFE.app\"",
+        },
+        {
             "name": "Run Game (WindowsX64)",
             "type": "lldb",
             "request": "launch",
@@ -62,6 +69,13 @@
             "preLaunchTask": "Build Game (WASM, Release)",
             "cwd": "${workspaceFolder}/Bin/Web/Release",
             "command": "python -m http.server 8008 --bind 127.0.0.1",
+        },
+        {
+            "name": "Run Game (macOSUniversal)",
+            "type": "node-terminal",
+            "request": "launch",
+            "preLaunchTask": "Build Game (macOSUniversal, Release)",
+            "command": "open \"${workspaceFolder}/Bin/macOSUniversal/Release/MoonChildFE.app\"",
         },
     ]
 }

@@ -45,7 +45,7 @@
                     ]
                 }
             },
-            "command": "wsl.exe --cd \"${workspaceFolder}\" bash ./Scripts/BuildGameLinux.sh Debug LinuxX64"
+            "command": "wsl.exe --cd \"${workspaceFolder}\" bash ./Scripts/BuildGameUnix.sh Debug LinuxX64"
         },
         {
             "label": "Build Game (LinuxX64, Release)",
@@ -59,7 +59,7 @@
                     ]
                 }
             },
-            "command": "wsl.exe --cd \"${workspaceFolder}\" bash ./Scripts/BuildGameLinux.sh Release LinuxX64"
+            "command": "wsl.exe --cd \"${workspaceFolder}\" bash ./Scripts/BuildGameUnix.sh Release LinuxX64"
         },
         {
             "label": "Build Game (WASM, Debug)",
@@ -96,6 +96,16 @@
                     ]
                 }
             }
+        },
+        {
+            "label": "Build Game (macOSUniversal, Debug)",
+            "type": "shell",
+            "command": "bash ./Scripts/BuildGameUnix.sh Debug macOSUniversal"
+        },
+        {
+            "label": "Build Game (macOSUniversal, Release)",
+            "type": "shell",
+            "command": "bash ./Scripts/BuildGameUnix.sh Release macOSUniversal"
         }
     ]
 }

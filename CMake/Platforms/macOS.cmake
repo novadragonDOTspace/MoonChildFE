@@ -1,4 +1,5 @@
 set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
+set(CMAKE_OSX_DEPLOYMENT_TARGET 11.0)
 
 target_compile_options(${EXECUTABLE_NAME} PRIVATE
     $<$<CONFIG:Debug>:-O0>

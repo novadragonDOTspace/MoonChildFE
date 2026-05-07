@@ -325,7 +325,11 @@ set(MOONCHILD_SOURCES
 )
 
 # Target
-add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${MOONCHILD_SOURCES})
+if(WIN32)
+    add_executable(${EXECUTABLE_NAME} WIN32 ${MOONCHILD_SOURCES})
+else()
+    add_executable(${EXECUTABLE_NAME} MACOSX_BUNDLE ${MOONCHILD_SOURCES})
+endif()
 
 if(MOONCHILD_ENABLE_EDITOR)
     target_compile_definitions(${EXECUTABLE_NAME} PRIVATE EDITOR=1)

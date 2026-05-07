@@ -34,10 +34,12 @@
         },
         {
             "name": "Debug Game (macOSUniversal)",
-            "type": "node-terminal",
+            "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build Game (macOSUniversal, Debug)",
-            "command": "open \"${workspaceFolder}/Bin/macOSUniversal/Debug/MoonChildFE.app\"",
+            "program": "${workspaceFolder}/Bin/macOSUniversal/Debug/MoonChildFE.app",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Game (macOSUniversal, Debug)"
         },
         {
             "name": "Run Game (WindowsX64)",
@@ -72,10 +74,12 @@
         },
         {
             "name": "Run Game (macOSUniversal)",
-            "type": "node-terminal",
+            "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build Game (macOSUniversal, Release)",
-            "command": "open \"${workspaceFolder}/Bin/macOSUniversal/Release/MoonChildFE.app\"",
+            "program": "${workspaceFolder}/Bin/macOSUniversal/Release/MoonChildFE.app",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build Game (macOSUniversal, Release)"
         },
     ]
 }

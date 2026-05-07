@@ -7,7 +7,15 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/Windows.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/WindowsX64",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "WindowsX64"
+        "MOONCHILD_TARGET_ARCH": "WindowsX64",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl",
+        "CMAKE_C_FLAGS_DEBUG": "/Od",
+        "CMAKE_CXX_FLAGS_DEBUG": "/Od",
+        "CMAKE_C_FLAGS_RELEASE": "/O2 /GL /fp:fast",
+        "CMAKE_CXX_FLAGS_RELEASE": "/O2 /GL /fp:fast",
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/LTCG",
+        "CMAKE_SHARED_LINKER_FLAGS_RELEASE": "/LTCG"
       }
     },
     {
@@ -16,7 +24,15 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/Windows.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/WindowsX86",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "WindowsX86"
+        "MOONCHILD_TARGET_ARCH": "WindowsX86",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl",
+        "CMAKE_C_FLAGS_DEBUG": "/Od",
+        "CMAKE_CXX_FLAGS_DEBUG": "/Od",
+        "CMAKE_C_FLAGS_RELEASE": "/O2 /GL /fp:fast",
+        "CMAKE_CXX_FLAGS_RELEASE": "/O2 /GL /fp:fast",
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/LTCG",
+        "CMAKE_SHARED_LINKER_FLAGS_RELEASE": "/LTCG"
       }
     },
     {
@@ -25,7 +41,13 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/Linux.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/LinuxX64",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "LinuxX64"
+        "MOONCHILD_TARGET_ARCH": "LinuxX64",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_FLAGS_DEBUG": "-O0",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0",
+        "CMAKE_C_FLAGS_RELEASE": "-O3",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3"
       }
     },
     {
@@ -34,7 +56,15 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/Linux.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/LinuxArm64",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "LinuxArm64"
+        "MOONCHILD_TARGET_ARCH": "LinuxArm64",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_COMPILER_TARGET": "aarch64-linux-gnu",
+        "CMAKE_CXX_COMPILER_TARGET": "aarch64-linux-gnu",
+        "CMAKE_C_FLAGS_DEBUG": "-O0",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0",
+        "CMAKE_C_FLAGS_RELEASE": "-O3",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3"
       }
     },
     {
@@ -43,7 +73,13 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/Web.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/Web",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "Web"
+        "MOONCHILD_TARGET_ARCH": "Web",
+        "CMAKE_C_FLAGS_DEBUG": "-O0",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0",
+        "CMAKE_C_FLAGS_RELEASE": "-O3",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3",
+        "CMAKE_EXE_LINKER_FLAGS_DEBUG": "-O0",
+        "CMAKE_EXE_LINKER_FLAGS_RELEASE": "-O3"
       }
     },
     {
@@ -52,7 +88,13 @@
       "toolchainFile": "${sourceDir}/CMake/Toolchains/MacOS.cmake",
       "binaryDir": "${sourceDir}/CMakeOut/macOSUniversal",
       "cacheVariables": {
-        "MOONCHILD_TARGET_ARCH": "macOSUniversal"
+        "MOONCHILD_TARGET_ARCH": "macOSUniversal",
+        "CMAKE_C_FLAGS_DEBUG": "-O0",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0",
+        "CMAKE_C_FLAGS_RELEASE": "-O3",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3",
+        "CMAKE_OSX_ARCHITECTURES": "x86_64;arm64",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "11.0"
       }
     }
   ],

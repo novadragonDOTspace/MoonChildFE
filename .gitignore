@@ -409,6 +409,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeOut
+CMakeUserPresets.json
 
 # VS Code bullllllshit
 build

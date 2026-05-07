@@ -1,6 +1,4 @@
 cmake_minimum_required(VERSION 3.25.1)
-set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
-set(CMAKE_OSX_DEPLOYMENT_TARGET 11.0)
 
 project(MoonChildFE LANGUAGES C CXX VERSION 1.5.0)
 set(EXECUTABLE_NAME MoonChildFE)

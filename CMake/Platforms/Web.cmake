@@ -1,11 +1,4 @@
-target_compile_options(${EXECUTABLE_NAME} PRIVATE
-    $<$<CONFIG:Debug>:-O0>
-    $<$<CONFIG:Release>:-O3>
-)
-
 target_link_options(${EXECUTABLE_NAME} PRIVATE
-    $<$<CONFIG:Debug>:-O0>
-    $<$<CONFIG:Release>:-O3>
     --shell-file "${CMAKE_SOURCE_DIR}/Platform/Web/shell.html"
     --pre-js "${CMAKE_SOURCE_DIR}/Platform/Web/pre.js"
     "SHELL:--preload-file ${CMAKE_SOURCE_DIR}/Data@/data"

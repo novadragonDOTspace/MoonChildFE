@@ -7049,6 +7049,13 @@ HEARTBEAT_FN MC_options(void)
 
   handleinput1shot();
 
+  if (shootkey == 1)
+    {
+      menupoint = menu1;
+      menuitem = 0;
+      return (HEARTBEAT_FN) MC_buildmenu;
+    }
+
   letterswirlscan();
   letterswirlin();
 

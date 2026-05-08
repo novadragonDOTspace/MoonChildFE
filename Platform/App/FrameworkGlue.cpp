@@ -13,11 +13,6 @@ int g_MouseYDown;
 int g_MouseXCurrent;
 int g_MouseYCurrent;
 
-int g_CurDeltaX;
-
-int frmwrk_CenterX;
-int frmwrk_CenterY;
-
 unsigned short* SettingsPic;
 
 void framework_usefastfile(bool offOn)

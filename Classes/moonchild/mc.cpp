@@ -2591,9 +2591,6 @@ HEARTBEAT_FN MC_endofdemo2(void)
 }
  
 
-extern int frmwrk_CenterX;
-extern int frmwrk_CenterY;
-
 HEARTBEAT_FN MC_heartbeat(void)
 {
   int i;
@@ -2601,15 +2598,6 @@ HEARTBEAT_FN MC_heartbeat(void)
   MC_RANDOM(4);
   eventhandle();
   check_keys();
-
-	// values doorgeven aan het framework (over hacken gesproken)
-if(hoi!=NULL)
-{
-    HOI_BLOOD *hoiblood = (HOI_BLOOD *)hoi->blood; /* in case of multiple hois */
-
-  frmwrk_CenterX = (hoi->x+32) + (hoiblood->spdx >> 4) - player1.worldx;// - hoi->x;
-  frmwrk_CenterY = (hoi->y+48) + (hoiblood->gravy >> 3) - player1.worldy;// - hoi->y;
-}
 
     // ***DEMOVERSION
 
@@ -5844,10 +5832,10 @@ void check_keys(void)
 #endif
     }
 
-  if (keytab[VK_ESCAPE] == 1 || keytab[CB_START] == 1)
+  if (keytab[VK_ESCAPE] == 1 || keytab[CB_BACK] == 1)
     {
       keytab[VK_ESCAPE] = 0;
-      keytab[CB_START] = 0;
+      keytab[CB_BACK] = 0;
 
       if (hoi->frame)   // Hoi wappert niet op dit moment?
 	  {
@@ -5856,14 +5844,11 @@ void check_keys(void)
     }
       
       
-  if (keytab['P'] == 1)
+  if (keytab['P'] == 1 || keytab[CB_START] == 1)
     {
       keytab['P'] = 0;
-        
-        mouserbut ^= 1;
-        mouserchng = 1;
-        
-//      pauseflg ^= 1;
+      keytab[CB_START] = 0;
+      pauseflg ^= 1;
     }
       
 #if 0      

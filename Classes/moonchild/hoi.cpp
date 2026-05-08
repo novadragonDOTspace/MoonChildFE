@@ -1632,24 +1632,6 @@ int hoi_live (OBJECT *object, UINT32 param)
   if (tempspd > -14 && tempspd < 14) tempspd = 0;
   tempspd >>= hoiblood->hoi_caps->xspddelay;
 
-
-  // scalen speed
-  extern int g_CurDeltaX;
-  extern int g_MouseFlg;
-
-  int	scalespd;
-  int   scalefactor;
-
-  if(g_MouseFlg)
-  {
-	  scalefactor = g_CurDeltaX;
-	  if(scalefactor<0) scalefactor = -scalefactor;
-	  if(scalefactor>64) scalefactor=64;
-	  scalespd = tempspd*scalefactor;
-	  scalespd /= 64;
-	  tempspd = scalespd;
-  }
-
   object->x += tempspd;
  
   

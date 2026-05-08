@@ -28,8 +28,6 @@ extern unsigned short gamespeedflg;
 extern int g_SettingsFlg;
 extern int g_ReqKeyFlg;
 extern int g_KeyTimeOut;
-extern int frmwrk_CenterX;
-extern int frmwrk_CenterY;
 extern void framework_EventHandle(int event, int param);
 extern HEARTBEAT_FN framework_InitGame(Cvideo* video, Caudio* audio, Ctimer* timer, Cmovie* movie);
 extern void framework_ExitGame(void);
@@ -195,8 +193,6 @@ static void ResetFrameworkState()
     g_SettingsFlg = 0;
     g_ReqKeyFlg = 0;
     g_KeyTimeOut = 0;
-    frmwrk_CenterX = 0;
-    frmwrk_CenterY = 0;
     gbGameLoop = true;
     heartbeat = nullptr;
     lvideo = nullptr;

@@ -58,11 +58,9 @@ public:
   void   unlock_bbuffer(void); 
    
   void   ShowFrameRate(void);
-  void	 ShowMouseCursor(void);
 
   void   DisplayChars(unsigned char *Cyfers, int x, int y);
   void   DisplayChars2(unsigned char *Cyfers, int x, int y);
-  void   Line( int x1, int y1, int x2, int y2, char color );
 
 //  LPDIRECTDRAW get_ddraw(void) {return glpDirectDraw;}   //DON'T USE EXTERNALLY!!!!    #######
 //  LPDIRECTDRAWSURFACE get_fddraw(void) { return glpFrontBuffer; }  // DON'T USE EXTERNALLY!!!! #######
